@@ -1,4 +1,5 @@
-//récupération des données de l'API
+
+//récupération des données de l'API + affichage des produits
 function fetchData() {
     fetch('http://localhost:3000/api/cameras')
         .then(response => {
@@ -12,7 +13,7 @@ function fetchData() {
             const html = data.map(cameras => {
                 return `
           <div class="cameras">
-          <a href="products.html">
+          <a href="products.html?+=${cameras._id}">
           <img src="${cameras.imageUrl}" alt="${cameras.name}"/>
           <h3>${cameras.name}</h3>
           <p><strong>${cameras.price / 100}€</strong></p>
@@ -31,7 +32,3 @@ function fetchData() {
 
 fetchData();
 
-//Selection du produit et renvoi sur la page produit
-const clickOnProduct = () => {
-
-}

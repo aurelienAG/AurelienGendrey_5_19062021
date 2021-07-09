@@ -48,7 +48,7 @@ header img{
     padding:2.5rem;
 }  
 
-/*MAIN*/
+/*Accueil*/
 
 #allProducts{
     display: flex;
@@ -89,7 +89,25 @@ header img{
     bottom: 2%; 
     font-weight: bolder; 
     color: black;
+} 
+
+/*ProductPage*/ 
+.card{
+width: 40rem;
 }
+
+/* .productCard{
+    width: 90%; 
+    margin: auto; 
+    align-self: center;
+} */
+
+#productImg img{
+    width: 100%; 
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    object-fit: cover;
+} 
 
 /*FOOTER*/
 footer{
