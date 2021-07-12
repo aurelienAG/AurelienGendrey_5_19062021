@@ -1,4 +1,4 @@
-//-----Variables qui gérent l'url du produit choisi 
+//-----Variables qui gérent l'url du produit choisi pour l'afficher dynamiquement
 const id = window.location.search.substring(3);
 console.log(id);
 const productUrl = `http://localhost:3000/api/cameras/${id}`;
@@ -25,6 +25,7 @@ fetch(productUrl)
       const productDescription = product.description;
       const productPrice = product.price / 100;
       const productLenses = product.lenses;
+      const productQuantity = product.lenses;
 
       //----- Affichage du produit
       displayProductImage.innerHTML = `<img src=${productImage}>`;
@@ -35,12 +36,14 @@ fetch(productUrl)
         `<option>${product.lenses[0]}</option>
       <option>${product.lenses[1]}</option>
       <option>${product.lenses[2]}</option>
-      <option>${product.lenses[3]}</option>
-      <option>${product.lenses[4]}</option>`
+      `
     });
   })
   .catch((err) => console.log(err)
   );
+
+localStorage.setItem = ('image', 'product.imageUrl');
+console.log(localStorage);
 
 
 
