@@ -42,8 +42,33 @@ fetch(productUrl)
   .catch((err) => console.log(err)
   );
 
-localStorage.setItem = ('image', 'product.imageUrl');
-console.log(localStorage);
+//-----------------------Local Storage------------ 
+//---------------Stocker la récupération des valeurs du produit dans le Local Storage------------ 
+let productBtn = document.querySelector("#addToCart");
+console.log(productBtn);
+
+productBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  const idForm= document.querySelector("#form-control");
+  const formChoice = idForm.value; 
+  let productSelected = {
+    name: document.querySelector("#product_Name").innerText,
+    option: formChoice,
+    price: document.querySelector("#product_Price").innerText
+  }
+    //stocker les saisies dans le local storage
+    // localStorage.setItem("Name", document.querySelector("#product_Name").innerText);
+    // console.log(document.querySelector("#product_Name").innerText);
+    // localStorage.setItem("Price", document.querySelector("#product_Price").innerText);
+    // console.log(document.querySelector("#product_Price").innerText);
+    // localStorage.setItem("Lenses", formChoice);
+    // console.log("Lenses", formChoice);
+    localStorage.setItem("productToAdd", productSelected);
+    console.log("productToAdd", productSelected);
+});
+
+
+
 
 
 
