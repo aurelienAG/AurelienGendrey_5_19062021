@@ -49,26 +49,49 @@ console.log(productBtn);
 
 productBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  const idForm= document.querySelector("#form-control");
-  const formChoice = idForm.value; 
+  const idForm = document.querySelector("#form-control");
+  const formChoice = idForm.value;
+
   let productSelected = {
     name: document.querySelector("#product_Name").innerText,
     option: formChoice,
     price: document.querySelector("#product_Price").innerText
+  };
+
+  //-------Le local storage------- 
+  //-----Stocker la récupération des valeurs du produit 
+
+  //Déclaration de la variable "savedInLocalStorage" 
+  let savedInLocalStorage = JSON.parse(localStorage.getItem("productAdded"));
+  //JSON.parse pour convertir les données JSON du local storage en objet javascript
+  console.log(savedInLocalStorage);
+
+  //Fonction fenêtre pop-up 
+  const popUpAdded = () => {
+    if (window.confirm(`Votre produit a bien été ajouté au panier!
+Cliquez sur OK pour voir votre panier`)) {
+      window.location.href = "cart.html";
+    } else {
+      window.location.href = window.location;
+    }
   }
-    //stocker les saisies dans le local storage
-    // localStorage.setItem("Name", document.querySelector("#product_Name").innerText);
-    // console.log(document.querySelector("#product_Name").innerText);
-    // localStorage.setItem("Price", document.querySelector("#product_Price").innerText);
-    // console.log(document.querySelector("#product_Price").innerText);
-    // localStorage.setItem("Lenses", formChoice);
-    // console.log("Lenses", formChoice);
-    localStorage.setItem("productToAdd", productSelected);
-    console.log("productToAdd", productSelected);
+  //si il y a déjà des produits dans le local storage 
+  if (savedInLocalStorage) {
+    savedInLocalStorage.push(productSelected);
+    localStorage.setItem("productAdded", JSON.stringify(savedInLocalStorage));
+    console.log(savedInLocalStorage);
+    popUpAdded();
+  }
+
+  //si il n'y a pas de produits dans le local storage
+  else {
+    savedInLocalStorage = [];
+    savedInLocalStorage.push(productSelected);
+    localStorage.setItem("productAdded", JSON.stringify(savedInLocalStorage));
+    console.log(savedInLocalStorage);
+  }
+
 });
-
-
-
 
 
 
