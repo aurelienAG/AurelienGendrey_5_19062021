@@ -24,7 +24,10 @@ else {
     productCartBloc = productCartBloc +
       `<span id="productName"><h3>${savedInLocalStorage[k].name}</h3></span>
         <span id="productLenses">${savedInLocalStorage[k].option}</span>
-        <span id="productQuantity"></span>
+        <span id="productQuantity"><strong>Qté</strong></span>
+        <input class="quantity" type="number">
+        <option value="number"></option>
+        </input>
         <span id="productPrice"><strong>${savedInLocalStorage[k].price}</strong></span>
         `;
   }
