@@ -106,22 +106,39 @@ height: 35rem;
 
 #productImg img{
     width: 100%; 
-    height:300px;
+    height:250px;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     object-fit: cover;
 } 
 
-#form-control{
+#form-control, #form-quantity{
     padding: 0.3rem; 
     width: 100%;
 } 
 
+
 /*Page panier*/
 .quantity{
     width: 3.7rem;
-}
+} 
+ #productName{
+     width: 25%; 
+     margin-right: 2rem;
+ } 
 
+ #userDataForm{
+     width: 80%;
+ }
+
+.form-group{
+    margin-bottom: 1rem;
+} 
+
+ .formBtn{
+     margin-top: 1rem; 
+     width: 30%;
+ }
 /*FOOTER*/
 footer{
     width: 100%; 

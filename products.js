@@ -9,6 +9,8 @@ const displayProductName = document.querySelector('#product_Name');
 const displayProductDescription = document.querySelector('#product_Description');
 const displayProductPrice = document.querySelector('#product_Price');
 const displayProductLenses = document.querySelector('#form-control');
+const displayQuantity = document.querySelector('#form-quantity');
+
 
 //---Récupération des infos du produit choisi auprès de l'api
 fetch(productUrl)
@@ -23,24 +25,38 @@ fetch(productUrl)
       const productImage = product.imageUrl;
       const productName = product.name;
       const productDescription = product.description;
-      const productPrice = product.price / 100;
+      const productPrice = (product.price / 100);
       const productLenses = product.lenses;
-      const productQuantity = product.lenses;
-
       //----- Affichage du produit
       displayProductImage.innerHTML = `<img src=${productImage}>`;
-      displayProductName.innerHTML = product.name;
-      displayProductDescription.innerHTML = product.description;
-      displayProductPrice.innerHTML = `<strong>${product.price / 100}€</strong>`;
+      displayProductName.innerHTML = productName;
+      displayProductDescription.innerHTML = productDescription;
+      displayProductPrice.innerHTML = `<strong>${productPrice}€</strong>`;
       displayProductLenses.innerHTML =
-        `<option>${product.lenses[0]}</option>
-      <option>${product.lenses[1]}</option>
-      <option>${product.lenses[2]}</option>
+        `<option>${productLenses[0]}</option>
+      <option>${productLenses[1]}</option>
+      <option>${productLenses[2]}</option>
+      `;
+      displayQuantity.innerHTML =
+        `
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
       `
     });
   })
   .catch((err) => console.log(err)
   );
+
+//-------------------------Gestion des quantités-----------------  
+
 
 //-----------------------Local Storage------------ 
 //---------------Stocker la récupération des valeurs du produit dans le Local Storage------------ 
@@ -55,7 +71,7 @@ productBtn.addEventListener("click", (event) => {
   let productSelected = {
     name: document.querySelector("#product_Name").innerText,
     option: formChoice,
-    price: document.querySelector("#product_Price").innerText
+    price: document.querySelector("#product_Price").innerText,
   };
 
   //-------Le local storage------- 

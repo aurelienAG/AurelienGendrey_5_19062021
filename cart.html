@@ -28,59 +28,59 @@
     </nav>
   </header>
   <div class="container">
-    <h1>Passez votre commande</h1>
+    <h1>Votre commande</h1>
     <main class="container" id="productsSelected">
       <div id="orderResume">
-        <h2>Contenu de votre panier</h2>
-        <span id="productName"></span>
-        <span id="productLenses"></span>
-        <span id="productQuantity"></span>
-        <span id="productPrice"></span>
-        <span id="totalPrice">
-          <h4>Montant à payer:</h3>
-        </span>
       </div>
     </main>
     <section>
-      
-      <form id="form_1">
-        <h2>Veuillez renseigner vos coordonnées</h2>
+      <span id="totalPrice">
+        <title>Montant à payer:</title>
+      </span>
+
+      <h2>Veuillez renseigner vos coordonnées</h2>
+      <form action="" method="POST" id="userDataForm">
+
         <div class="form-group">
-          <label for="name">
+          <label for="lastName">
             Nom
-                      </label>    
-                      <input id="name" class="form-control" type="text" required/>    
+          </label>
+          <input type="text" class="form-control" name="lastName" />
+          <small></small>
         </div>
         <div class="form-group">
-          <label for="name">
+          <label for="firstName">
             Prénom
-                      </label>    
-                      <input id="name" class="form-control" type="text" required/>    
+          </label>
+          <input type="text" class="form-control" name="firstName" />
+          <small></small>
         </div>
         <div class="form-group">
           <label for="address">
             Adresse
-                      </label> 
-                          <input id="address" class="form-control" type="text" required/>
+          </label>
+          <input type="text" class="form-control" name="address" />
+          <small></small>
         </div>
         <div class="form-group">
           <label for="city">
             Ville
-                      </label> 
-                          <input id="city" class="form-control" type="text" required/>
+          </label>
+          <input type="text" class="form-control" name="city" />
+          <small></small>
         </div>
         <div class="form-group">
           <label for="email">
             E-mail
-                      </label> 
-                          <input id="email" class="form-control" type="email" required/>
+          </label>
+          <input type="text" class="form-control" name="email" />
+          <small></small>
         </div>
-        <button tabindex="0" class="btn btn-secondary" id="btnSubmit" type="submit">
-          Envoyer
-        </button>
-      </form>
-    </div>
-    </section>
+        <div class="form-group">
+          <button class="btn btn-secondary formBtn" type="submit">Envoyer</button>
+        </div>
+  </div>
+  </section>
   </div>
   <footer>
     <ul class="footer_titles">
