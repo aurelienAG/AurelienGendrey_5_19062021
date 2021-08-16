@@ -125,19 +125,14 @@ height: 35rem;
  #productName{
      width: 25%; 
      margin-right: 2rem;
+ }  
+
+ #productLenses{
+     font-weight: 400; 
  } 
 
- #userDataForm{
-     width: 80%;
- }
-
-.form-group{
-    margin-bottom: 1rem;
-} 
-
- .formBtn{
-     margin-top: 1rem; 
-     width: 30%;
+ #sumTotal{
+     margin-left: 13rem;
  }
 /*FOOTER*/
 footer{

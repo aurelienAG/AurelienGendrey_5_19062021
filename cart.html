@@ -28,57 +28,72 @@
     </nav>
   </header>
   <div class="container">
-    <h1>Votre commande</h1>
+    <h1 class="cartPageTitle">Finalisez votre commande</h1>
+
+    <h2 class="yourCart">Votre panier</h2>
+
     <main class="container" id="productsSelected">
+      <table class="table my-3">
+        <tbody>
+          <tr id="columnsNames">
+            <th scope="row" id="productTitle">
+              Produit
+            </th>
+            <th scope="row" id="qtyTitle">Quantité</th>
+            <th scope="row" id="priceTitle">Total</th>
+          </tr>
+        </tbody>
+      </table>
       <div id="orderResume">
       </div>
-    </main>
-    <section>
       <span id="totalPrice">
-        <title>Montant à payer:</title>
+        <p><span><strong>Montant à payer:</strong></span><span id="sumTotal"></span>
       </span>
+    </main>
 
-      <h2>Veuillez renseigner vos coordonnées</h2>
-      <form action="" method="POST" id="userDataForm">
 
-        <div class="form-group">
-          <label for="lastName">
-            Nom
-          </label>
-          <input type="text" class="form-control" name="lastName" />
-          <small></small>
-        </div>
-        <div class="form-group">
-          <label for="firstName">
-            Prénom
-          </label>
-          <input type="text" class="form-control" name="firstName" />
-          <small></small>
-        </div>
-        <div class="form-group">
-          <label for="address">
-            Adresse
-          </label>
-          <input type="text" class="form-control" name="address" />
-          <small></small>
-        </div>
-        <div class="form-group">
-          <label for="city">
-            Ville
-          </label>
-          <input type="text" class="form-control" name="city" />
-          <small></small>
-        </div>
-        <div class="form-group">
-          <label for="email">
-            E-mail
-          </label>
-          <input type="text" class="form-control" name="email" />
-          <small></small>
-        </div>
-        <div class="form-group">
-          <button class="btn btn-secondary formBtn" type="submit">Envoyer</button>
-        </div>
+    <h2 class="formTitle">Veuillez renseigner vos coordonnées</h2>
+    <form action="" method="POST" id="userDataForm">
+
+      <div class="form-group">
+        <label for="lastName">
+          Nom
+        </label>
+        <input type="text" class="form-control" name="lastName" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label for="firstName">
+          Prénom
+        </label>
+        <input type="text" class="form-control" name="firstName" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label for="address">
+          Adresse
+        </label>
+        <input type="text" class="form-control" name="address" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label for="city">
+          Ville
+        </label>
+        <input type="text" class="form-control" name="city" required>
+        <small></small>
+      </div>
+      <div class="form-group">
+        <label for="email">
+          E-mail
+        </label>
+        <input type="text" class="form-control" name="email" required />
+        <small></small>
+      </div>
+      <div class="form-group">
+        <button href="order.html" onclick="postFormData" class="btn btn-secondary formBtn"
+          type="submit">Commander</button>
+      </div>
   </div>
   </section>
   </div>

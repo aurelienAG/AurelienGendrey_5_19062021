@@ -11,7 +11,6 @@ const displayProductPrice = document.querySelector('#product_Price');
 const displayProductLenses = document.querySelector('#form-control');
 const displayQuantity = document.querySelector('#form-quantity');
 
-
 //---Récupération des infos du produit choisi auprès de l'api
 fetch(productUrl)
   .then((response) => {
@@ -25,13 +24,31 @@ fetch(productUrl)
       const productImage = product.imageUrl;
       const productName = product.name;
       const productDescription = product.description;
-      const productPrice = (product.price / 100);
+      let productPrice = (product.price / 100);
       const productLenses = product.lenses;
+      //-------------------------Gestion des quantités-----------------  
+      const idQuantityForm = document.querySelector("#form-quantity");
+      console.log(idQuantityForm);
+      idQuantityForm.addEventListener("click", (event) => {
+        event.preventDefault();
+        const quantitySelected = idQuantityForm.value;
+        console.log(quantitySelected);
+        const newQuantity = document.querySelector("#form-quantity").value;
+        console.log(newQuantity);
+        const newPrice = (product.price / 100) * newQuantity;
+        console.log(newPrice);
+      })
+      if (idQuantityForm === true) {
+        displayProductPrice.innerHTML = `<strong>${newPrice}€</strong>`;
+      }
+      else {
+        displayProductPrice.innerHTML = `<strong>${productPrice}</strong>`;
+      }
+
       //----- Affichage du produit
       displayProductImage.innerHTML = `<img src=${productImage}>`;
       displayProductName.innerHTML = productName;
       displayProductDescription.innerHTML = productDescription;
-      displayProductPrice.innerHTML = `<strong>${productPrice}€</strong>`;
       displayProductLenses.innerHTML =
         `<option>${productLenses[0]}</option>
       <option>${productLenses[1]}</option>
@@ -43,36 +60,37 @@ fetch(productUrl)
       <option value="2">2</option>
       <option value="3">3</option>
       <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
       `
     });
   })
   .catch((err) => console.log(err)
   );
 
-//-------------------------Gestion des quantités-----------------  
-
 
 //-----------------------Local Storage------------ 
 //---------------Stocker la récupération des valeurs du produit dans le Local Storage------------ 
+
 let productBtn = document.querySelector("#addToCart");
 console.log(productBtn);
-
 productBtn.addEventListener("click", (event) => {
   event.preventDefault();
   const idForm = document.querySelector("#form-control");
   const formChoice = idForm.value;
+  const idQuantityForm = document.querySelector("#form-quantity");
+  console.log(idQuantityForm);
+  const quantitySelected = idQuantityForm.value;
+  console.log(quantitySelected);
+  let newPrice = (product.price / 100) * quantitySelected;
+  console.log(newPrice);
 
   let productSelected = {
+    image: product.imageUrl,
     name: document.querySelector("#product_Name").innerText,
     option: formChoice,
-    price: document.querySelector("#product_Price").innerText,
+    quantity: quantitySelected,
+    price: document.getElementById("product_Price").innerText
   };
+
 
   //-------Le local storage------- 
   //-----Stocker la récupération des valeurs du produit 

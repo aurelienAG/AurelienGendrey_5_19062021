@@ -2,12 +2,8 @@
 let savedInLocalStorage = JSON.parse(localStorage.getItem("productAdded"));
 //JSON.parse pour convertir les données JSON du local storage en objet javascript
 console.log(savedInLocalStorage);
-
 //----affichage des produits----
-
 const cartContained = document.querySelector("#orderResume");
-// const optionQuantity = document.getElementsByClassName('quantityProduct');
-// console.log(optionQuantity);
 
 //si aucun article dans le panier l'indiquer à l'utilisateur 
 if (savedInLocalStorage === null) {
@@ -19,51 +15,79 @@ if (savedInLocalStorage === null) {
 //si le panier contient déjà un article 
 
 else {
+
   let productCartBloc = [];
   for (b = 0; b < savedInLocalStorage.length; b++) {
 
     productCartBloc = productCartBloc +
-      `<table class="table my-3">
+      `
+      <table class="table my-3">
       <tbody>
       <tr id="articleChoiced">
-      <th scope="row" id="productName">${savedInLocalStorage[b].name}</th>
-        <td id="productLenses">${savedInLocalStorage[b].option}</td>
+      <th scope="row" id="productName"><span id="imgCartProduct">${savedInLocalStorage[b].image}</span>${savedInLocalStorage[b].name}</br><span id="productLenses">${savedInLocalStorage[b].option}</span></th>
         <td id="productQuantity">
         <form name="fo" id="quantityForm">
         <select name="select" id="quantitySelect">
-        <option class="quantityProduct" name="option" value="1">1</option>
-        <option class="quantityProduct" name="option" value="2">2</option>
-        <option class="quantityProduct" name="option" value="3">3</option>
-        <option class="quantityProduct" name="option" value="4">4</option>
-        <option class="quantityProduct" name="option" value="5">5</option>
-        <option class="quantityProduct" name="option" value="6">6</option>
-        <option class="quantityProduct" name="option" value="7">7</option>
-        <option class="quantityProduct" name="option" value="8">8</option>
+        <option value="${savedInLocalStorage[b].quantity}">${savedInLocalStorage[b].quantity}</option>
+        <option value="1">1</option> 
+        <option value="2">2</option> 
+        <option value="3">3</option> 
+        <option value="4">4</option> 
         </select>
         </form></td>
-        <td id="productPrice"><strong>${savedInLocalStorage[b].price}</strong></td>
-        <td><button class="btn-delete"><i class="fas fa-trash"></i></button></td>
+        <td id="productPrice"><strong>${savedInLocalStorage[b].price}€</strong></td>
+        <td id="delete"><button class="btn-delete"><i class="fas fa-trash"></i></button></td>
         </tr>
         </tbody>
         </table>
         `
       ;
+
+    let productPrice = parseInt(savedInLocalStorage[b].price);
+    console.log(productPrice);
   }
 
   if (b === savedInLocalStorage.length) {
     cartContained.innerHTML = productCartBloc;
   }
 }
-let btn_delete = document.querySelectorAll(".btn-delete");
+//----gestion du boutton supprimer
+const btn_delete = document.querySelectorAll(".btn-delete");
 console.log(btn_delete);
 
 for (let c = 0; c < btn_delete.length; c++) {
   btn_delete[c].addEventListener("click", (event) => {
     event.preventDefault();
-    let elementToDelete = savedInLocalStorage[c].productSelected;
-    console.log(elementToDelete);
+    let deleteProduct = savedInLocalStorage[c];
+    console.log(deleteProduct);
+
+    savedInLocalStorage = deleteProduct.filter(el => el.delecteProduct !== deleteProduct);
+    console.log(savedInLocalStorage);
   })
 }
+
+//-----------------calcul du montant à payer---------------- 
+
+let totalToPay = [];
+console.log(totalToPay);
+for (let d = 0; d < savedInLocalStorage.length; d++) {
+  let prices = parseInt(savedInLocalStorage[d].price);
+  console.log(prices);
+  totalToPay.push(prices);
+  console.log(totalToPay);
+}
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+console.log(reducer);
+const totalPrice = totalToPay.reduce(reducer);
+console.log(totalPrice);
+
+const displayTotalPrice = document.querySelector("#sumTotal");
+console.log(displayTotalPrice);
+displayTotalPrice.innerHTML = `<strong>${totalPrice}€</strong>`
+//-----------------gestion des quantités
+
+
+
 
 //------Gestion du formulaire de contact-------- 
 //---variable qui sélectionnent le formulaire
@@ -136,7 +160,7 @@ const validAddress = function (inputAddress) {
   //-----Création de l'expresion régulière pour la validation du nom
   let addressRegExp = new RegExp(
     // '^[1-10]{2-10}+[/s]{1}+[A-Za-z\é\è\ê\s]$', 'g'
-    '^[0-9]{2,10}+[a-zA-Z\é\è\ê\-\s]{2,10}$', 'g'
+    '^[a-zA-Z0-9-\s]+$', 'g'
   );
 
   //Selection de la balise small pour alerter de la validité du champs
@@ -214,8 +238,15 @@ const validEmail = function (inputEmail) {
 };
 
 
+//----Envoi du formulaire au back-end 
+//----Variable qui sélectionne le boutton d'envoi du formulaire
+const userDataBtn = document.querySelector(".formBtn");
+console.log(userDataBtn);
 
+userDataBtn.onclick = sendFormToBackend;
 
-
+function sendFormToBackend() {
+  fetch('http://localhost:3000/api/cameras/order');
+}
 
 
