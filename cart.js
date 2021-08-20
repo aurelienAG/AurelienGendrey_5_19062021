@@ -24,33 +24,48 @@ else {
       <table class="table my-3">
       <tbody>
       <tr id="articleChoiced">
-      <th scope="row" id="productName"><span id="imgCartProduct">${savedInLocalStorage[b].image}</span>${savedInLocalStorage[b].name}</br><span id="productLenses">${savedInLocalStorage[b].option}</span></th>
-        <td id="productQuantity">
-        <form name="fo" id="quantityForm">
-        <select name="select" id="quantitySelect">
-        <option value="${savedInLocalStorage[b].quantity}">${savedInLocalStorage[b].quantity}</option>
-        <option value="1">1</option> 
-        <option value="2">2</option> 
-        <option value="3">3</option> 
-        <option value="4">4</option> 
-        </select>
-        </form></td>
-        <td id="productPrice"><strong>${savedInLocalStorage[b].price}€</strong></td>
-        <td id="delete"><button class="btn-delete"><i class="fas fa-trash"></i></button></td>
+      <th scope="row" id="productName"><h4>${savedInLocalStorage[b].name}</h4></th>
+      <td id="productLenses">${savedInLocalStorage[b].option}</td> 
+      <td id="productQuantity">
+      <span id="quantity">${savedInLocalStorage[b].quantity}</span>
+      </td>
+        <td id="productPrice"><strong>${savedInLocalStorage[b].price},00€</strong></td>
+        <td id="delete"><a class="btn-delete"><i class="fas fa-times-circle"></i></a></td>
         </tr>
         </tbody>
         </table>
         `
       ;
+      let productPrice = parseInt(savedInLocalStorage[b].price);
+    console.log(productPrice);   
 
-    let productPrice = parseInt(savedInLocalStorage[b].price);
-    console.log(productPrice);
   }
 
   if (b === savedInLocalStorage.length) {
     cartContained.innerHTML = productCartBloc;
   }
+  //-----------------calcul du montant à payer---------------- 
+
+  let totalToPay = [];
+  console.log(totalToPay);
+  for (let d = 0; d < savedInLocalStorage.length; d++) {
+    let prices = parseInt(savedInLocalStorage[d].price);
+    console.log(prices);
+    totalToPay.push(prices);
+    console.log(totalToPay);
+  }
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  console.log(reducer);
+  const totalPrice = totalToPay.reduce(reducer);
+  console.log(totalPrice);
+  
+  const displayTotalPrice = document.querySelector("#sumTotal");
+  console.log(displayTotalPrice);
+  displayTotalPrice.innerHTML = `<strong>${totalPrice}€</strong>`
 }
+
+ 
+
 //----gestion du boutton supprimer
 const btn_delete = document.querySelectorAll(".btn-delete");
 console.log(btn_delete);
@@ -61,29 +76,12 @@ for (let c = 0; c < btn_delete.length; c++) {
     let deleteProduct = savedInLocalStorage[c];
     console.log(deleteProduct);
 
-    savedInLocalStorage = deleteProduct.filter(el => el.delecteProduct !== deleteProduct);
+    savedInLocalStorage = delete deleteProduct.filter(el => el.delecteProduct !== deleteProduct);
     console.log(savedInLocalStorage);
   })
 }
 
-//-----------------calcul du montant à payer---------------- 
 
-let totalToPay = [];
-console.log(totalToPay);
-for (let d = 0; d < savedInLocalStorage.length; d++) {
-  let prices = parseInt(savedInLocalStorage[d].price);
-  console.log(prices);
-  totalToPay.push(prices);
-  console.log(totalToPay);
-}
-const reducer = (accumulator, currentValue) => accumulator + currentValue;
-console.log(reducer);
-const totalPrice = totalToPay.reduce(reducer);
-console.log(totalPrice);
-
-const displayTotalPrice = document.querySelector("#sumTotal");
-console.log(displayTotalPrice);
-displayTotalPrice.innerHTML = `<strong>${totalPrice}€</strong>`
 //-----------------gestion des quantités
 
 
@@ -235,18 +233,55 @@ const validEmail = function (inputEmail) {
     small.classList.remove('text-success');
     small.classList.add('text-danger');
   }
-};
+}
 
 
 //----Envoi du formulaire au back-end 
 //----Variable qui sélectionne le boutton d'envoi du formulaire
 const userDataBtn = document.querySelector(".formBtn");
-console.log(userDataBtn);
+console.log(userDataBtn); 
+const firstName = document.querySelector("#firstName").value; 
+console.log(firstName);
+const lastName = document.querySelector("#lastName").value; 
+console.log(lastName);
+const address = document.querySelector("#address").value; 
+console.log(address);
+const city = document.querySelector("#city").value; 
+console.log(city);
+const email = document.querySelector("#email").value; 
+console.log(email); 
 
-userDataBtn.onclick = sendFormToBackend;
+const contact = {
+  firstName: firstName,
+  lastName: lastName,
+  address: address,
+  city: city,
+  email: email
+};  
 
-function sendFormToBackend() {
-  fetch('http://localhost:3000/api/cameras/order');
-}
+const priceToPay = document.querySelector("#sumTotal").innerText; 
+console.log(priceToPay);  
+
+const productsChoiced = savedInLocalStorage;
+console.log(productsChoiced);
+
+let sendToBackend = { contact, productsChoiced,priceToPay};
+sendToBackendjs = JSON.stringify(sendToBackend); 
+console.log(sendToBackend); 
 
 
+userDataBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+ 
+  ("http://localhost:3000/api/cameras/order",{
+    
+  method: "POST",
+  body: sendToBackendjs,
+  headers: {
+    "Content-Type": "application/json", 
+  },
+})
+
+
+
+});

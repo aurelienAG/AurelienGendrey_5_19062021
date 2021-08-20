@@ -9,7 +9,7 @@ const displayProductName = document.querySelector('#product_Name');
 const displayProductDescription = document.querySelector('#product_Description');
 const displayProductPrice = document.querySelector('#product_Price');
 const displayProductLenses = document.querySelector('#form-control');
-const displayQuantity = document.querySelector('#form-quantity');
+const displayQuantity = document.querySelector('#product_quantity');
 
 //---Récupération des infos du produit choisi auprès de l'api
 fetch(productUrl)
@@ -24,28 +24,30 @@ fetch(productUrl)
       const productImage = product.imageUrl;
       const productName = product.name;
       const productDescription = product.description;
-      let productPrice = (product.price / 100);
+      let productPrice = parseInt(product.price / 100);
+      console.log(productPrice);
       const productLenses = product.lenses;
       //-------------------------Gestion des quantités-----------------  
-      const idQuantityForm = document.querySelector("#form-quantity");
-      console.log(idQuantityForm);
-      idQuantityForm.addEventListener("click", (event) => {
-        event.preventDefault();
-        const quantitySelected = idQuantityForm.value;
-        console.log(quantitySelected);
-        const newQuantity = document.querySelector("#form-quantity").value;
-        console.log(newQuantity);
-        const newPrice = (product.price / 100) * newQuantity;
-        console.log(newPrice);
-      })
-      if (idQuantityForm === true) {
-        displayProductPrice.innerHTML = `<strong>${newPrice}€</strong>`;
-      }
-      else {
-        displayProductPrice.innerHTML = `<strong>${productPrice}</strong>`;
-      }
+      // const idQuantityForm = document.querySelector("#form-quantity");
+      // console.log(idQuantityForm);
+      // idQuantityForm.addEventListener("click", (event) => {
+      //   event.preventDefault();
+      //   const quantitySelected = idQuantityForm.value;
+      //   console.log(quantitySelected);
+      //   const newQuantity = document.querySelector("#form-quantity").value;
+      //   console.log(newQuantity);
+      //   const newPrice = (product.price / 100) * newQuantity;
+      //   console.log(newPrice);
+      // })
+      // if (idQuantityForm === true) {
+      //   displayProductPrice.innerHTML = `<strong>${newPrice}€</strong>`;
+      // }
+      // else {
+        
+      // }
 
       //----- Affichage du produit
+      displayProductPrice.innerHTML = `<strong>${productPrice},00€</strong>`;
       displayProductImage.innerHTML = `<img src=${productImage}>`;
       displayProductName.innerHTML = productName;
       displayProductDescription.innerHTML = productDescription;
@@ -56,16 +58,34 @@ fetch(productUrl)
       `;
       displayQuantity.innerHTML =
         `
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
+        <a class="btn-decrease" id="btn-decrease"><i class="fas fa-minus-circle"></i></a>
+        <span class="quantityClicked" id="quantity">${1}</span>
+        <a class="btn-increase"><i class="fas fa-plus-circle"></i></a>
       `
+      //-----------Gestion des quantités et modification du prix
+  let buttonIncrease = document.querySelector(".btn-increase"); 
+  let buttonDecrease = document.querySelector(".btn-decrease");
+  console.log(buttonDecrease);
+  let quantity = document.querySelector(".quantityClicked").innerText;
+ let quantityParsed = parseInt(quantity);
+ let finalPriceProduct = document.getElementById('product_Price').innerText;
+ let finalProductPriceParsed = parseInt(finalPriceProduct); 
+buttonIncrease.addEventListener("click",(event)=>{
+  event.preventDefault(); 
+  document.querySelector("#quantity").innerText = quantityParsed += 1; 
+  document.querySelector("#product_Price").innerHTML =`<strong>${quantityParsed* finalProductPriceParsed},00€</strong>`  ;
+})
+buttonDecrease.addEventListener("click",(event)=>{
+  event.preventDefault(); 
+  document.querySelector("#quantity").innerText = quantityParsed -= 1; 
+  document.querySelector("#product_Price").innerHTML =`<strong>${quantityParsed* finalProductPriceParsed},00€</strong>`  ;
+})
     });
+   
   })
   .catch((err) => console.log(err)
-  );
-
+  )
+  
 
 //-----------------------Local Storage------------ 
 //---------------Stocker la récupération des valeurs du produit dans le Local Storage------------ 
@@ -76,20 +96,18 @@ productBtn.addEventListener("click", (event) => {
   event.preventDefault();
   const idForm = document.querySelector("#form-control");
   const formChoice = idForm.value;
-  const idQuantityForm = document.querySelector("#form-quantity");
-  console.log(idQuantityForm);
-  const quantitySelected = idQuantityForm.value;
-  console.log(quantitySelected);
-  let newPrice = (product.price / 100) * quantitySelected;
-  console.log(newPrice);
-
+  let priceToSend = document.querySelector("#product_Price").innerText; 
+  console.log(priceToSend); 
+  let convertedPrice = parseInt(priceToSend); 
+console.log(convertedPrice);
   let productSelected = {
-    image: product.imageUrl,
     name: document.querySelector("#product_Name").innerText,
     option: formChoice,
-    quantity: quantitySelected,
-    price: document.getElementById("product_Price").innerText
-  };
+    quantity: document.querySelector("#quantity").innerText,
+    price: convertedPrice
+  } 
+  
+  ;
 
 
   //-------Le local storage------- 

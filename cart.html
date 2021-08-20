@@ -20,8 +20,8 @@
       <ul class="nav justify-content-end">
         <li class="nav-item">
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Panier</a><span class="counter">0</span>
+        <li class="cart">
+          <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i>Panier</a>
         </li>
       </ul>
 
@@ -37,19 +37,30 @@
         <tbody>
           <tr id="columnsNames">
             <th scope="row" id="productTitle">
-              Produit
+              <h3>Produit</h3>
             </th>
-            <th scope="row" id="qtyTitle">Quantité</th>
-            <th scope="row" id="priceTitle">Total</th>
+            <th scope="row" id="lensesTitle">
+              <h3>Lentilles</h3>
+            </th>
+            <th scope="row" id="qtyTitle">
+              <h3>Quantité</h3>
+            </th>
+            <th scope="row" id="priceTitle">
+              <h3>Prix</h3>
+            </th>
           </tr>
         </tbody>
       </table>
       <div id="orderResume">
       </div>
       <span id="totalPrice">
-        <p><span><strong>Montant à payer:</strong></span><span id="sumTotal"></span>
-      </span>
+        <span>
+          <h5><strong>Montant à payer:</strong>
+            <span id="sumTotal"></span>
+          </h5>
+        </span>
     </main>
+
 
 
     <h2 class="formTitle">Veuillez renseigner vos coordonnées</h2>
@@ -59,39 +70,39 @@
         <label for="lastName">
           Nom
         </label>
-        <input type="text" class="form-control" name="lastName" required />
+        <input type="text" id="lastName" class="form-control" name="lastName" required />
         <small></small>
       </div>
       <div class="form-group">
         <label for="firstName">
           Prénom
         </label>
-        <input type="text" class="form-control" name="firstName" required />
+        <input type="text" id="firstName" class="form-control" name="firstName" required />
         <small></small>
       </div>
       <div class="form-group">
         <label for="address">
           Adresse
         </label>
-        <input type="text" class="form-control" name="address" required />
+        <input type="text" id="address" class="form-control" name="address" required />
         <small></small>
       </div>
       <div class="form-group">
         <label for="city">
           Ville
         </label>
-        <input type="text" class="form-control" name="city" required>
+        <input type="text" id="city" class="form-control" name="city" required>
         <small></small>
       </div>
       <div class="form-group">
         <label for="email">
           E-mail
         </label>
-        <input type="text" class="form-control" name="email" required />
+        <input type="text" id="email" class="form-control" name="email" required />
         <small></small>
       </div>
       <div class="form-group">
-        <button href="order.html" onclick="postFormData" class="btn btn-secondary formBtn"
+        <button href="order.html" class="btn btn-secondary formBtn"
           type="submit">Commander</button>
       </div>
   </div>

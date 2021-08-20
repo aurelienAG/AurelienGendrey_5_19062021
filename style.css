@@ -5,7 +5,7 @@ body{
 /*Header*/
 header{ 
     width: 100%; 
-    height: 8rem;
+    height: 7rem;
     background-color: rgb(241, 233, 241);
     padding-bottom:1.5rem;
     display: flex; 
@@ -15,9 +15,10 @@ header{
 
 header img{
     width:200px;
-    height:150px;
+    height:70px;
     margin-left: 2rem; 
-    padding-bottom: 2.5rem;
+    position: absolute; 
+    top: 15%;
     object-fit:contain;
 }
 
@@ -27,16 +28,7 @@ header img{
     padding: 2.3rem 25px;
 } 
 
-.counter{
-    border-radius: 50%;
-    padding:0em 0.45em 0em 0.45em;
-    background:linear-gradient(#c96d16,#e98529 ,#8e44d3,#800aee);
-    color:white; 
-    font-weight: bolder;
-    position: absolute; 
-    top: 22%; 
-    right:2%;
-} 
+
 
 .nav a{
     color:black;
@@ -119,20 +111,50 @@ height: 35rem;
 
 
 /*Page panier*/
+.table h3{
+    font-size: 1.2em;
+} 
+
+.table h4{
+    font-size: 1.1em;
+} 
+#columnsNames, #articleChoiced{
+    width: 70rem; 
+    margin-top: auto;
+}
+
 .quantity{
     width: 3.7rem;
 } 
- #productName{
+
+ #productName,#productTitle{
      width: 25%; 
      margin-right: 2rem;
  }  
 
- #productLenses{
-     font-weight: 400; 
- } 
+ #productLenses,#lensesTitle{
+    width: 25%;
+ }  
 
+ #productPrice{
+     width: 20%;
+ }  
+ #priceTitle{
+     width:25%;
+ }
+ #delete{
+     width: 5%;
+ }
+ .btn-delete{
+     font-size: 1.5em;
+     margin-bottom: 1rem; 
+ }
+
+ #totalTitle{
+     font-size: 1.5em;
+ }
  #sumTotal{
-     margin-left: 13rem;
+    margin-left: 25rem ;
  }
 /*FOOTER*/
 footer{
