@@ -33,12 +33,27 @@ fetch(productUrl)
       displayProductImage.innerHTML = `<img src=${productImage}>`;
       displayProductName.innerHTML = productName;
       displayProductDescription.innerHTML = productDescription;
+     
+      if(productLenses.length === 3)
+       {
       displayProductLenses.innerHTML =
         `<option>${productLenses[0]}</option>
       <option>${productLenses[1]}</option>
       <option>${productLenses[2]}</option>
-      `;
-      displayQuantity.innerHTML =
+      `;} 
+
+      if (productLenses.length === 2){
+        displayProductLenses.innerHTML =
+        `<option>${productLenses[0]}</option>
+        <option>${productLenses[1]}</option>
+        `;
+      }
+      if (productLenses.length === 1){
+        displayProductLenses.innerHTML =
+        `<option>${productLenses[0]}</option>
+        `;
+      }
+      displayQuantity.innerHTML = 
         `
         <a class="btn-decrease" id="btn-decrease"><i class="fas fa-minus-circle"></i></a>
         <span class="quantityClicked" id="quantity">${1}</span>
@@ -59,7 +74,7 @@ buttonIncrease.addEventListener("click",(event)=>{
 buttonDecrease.addEventListener("click",(event)=>{
   event.preventDefault(); 
   document.querySelector("#quantity").innerText = quantityParsed -= 1; 
-  document.querySelector("#product_Price").innerHTML =`<strong>${quantityParsed* finalProductPriceParsed},00€</strong>`  ;
+  document.querySelector("#product_Price").innerHTML =`<strong>${quantityParsed * finalProductPriceParsed},00€</strong>`  ;
 })
     });
    
