@@ -26,26 +26,8 @@ fetch(productUrl)
       const productDescription = product.description;
       let productPrice = parseInt(product.price / 100);
       console.log(productPrice);
-      const productLenses = product.lenses;
-      //-------------------------Gestion des quantités-----------------  
-      // const idQuantityForm = document.querySelector("#form-quantity");
-      // console.log(idQuantityForm);
-      // idQuantityForm.addEventListener("click", (event) => {
-      //   event.preventDefault();
-      //   const quantitySelected = idQuantityForm.value;
-      //   console.log(quantitySelected);
-      //   const newQuantity = document.querySelector("#form-quantity").value;
-      //   console.log(newQuantity);
-      //   const newPrice = (product.price / 100) * newQuantity;
-      //   console.log(newPrice);
-      // })
-      // if (idQuantityForm === true) {
-      //   displayProductPrice.innerHTML = `<strong>${newPrice}€</strong>`;
-      // }
-      // else {
-        
-      // }
-
+      const productLenses = product.lenses; 
+      
       //----- Affichage du produit
       displayProductPrice.innerHTML = `<strong>${productPrice},00€</strong>`;
       displayProductImage.innerHTML = `<img src=${productImage}>`;
@@ -65,7 +47,6 @@ fetch(productUrl)
       //-----------Gestion des quantités et modification du prix
   let buttonIncrease = document.querySelector(".btn-increase"); 
   let buttonDecrease = document.querySelector(".btn-decrease");
-  console.log(buttonDecrease);
   let quantity = document.querySelector(".quantityClicked").innerText;
  let quantityParsed = parseInt(quantity);
  let finalPriceProduct = document.getElementById('product_Price').innerText;
@@ -86,7 +67,6 @@ buttonDecrease.addEventListener("click",(event)=>{
   .catch((err) => console.log(err)
   )
   
-
 //-----------------------Local Storage------------ 
 //---------------Stocker la récupération des valeurs du produit dans le Local Storage------------ 
 
@@ -101,14 +81,12 @@ productBtn.addEventListener("click", (event) => {
   let convertedPrice = parseInt(priceToSend); 
 console.log(convertedPrice);
   let productSelected = {
+    id: id,
     name: document.querySelector("#product_Name").innerText,
     option: formChoice,
     quantity: document.querySelector("#quantity").innerText,
     price: convertedPrice
-  } 
-  
-  ;
-
+  };
 
   //-------Le local storage------- 
   //-----Stocker la récupération des valeurs du produit 

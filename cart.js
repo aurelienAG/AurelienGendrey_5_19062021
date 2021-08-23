@@ -81,12 +81,6 @@ for (let c = 0; c < btn_delete.length; c++) {
   })
 }
 
-
-//-----------------gestion des quantités
-
-
-
-
 //------Gestion du formulaire de contact-------- 
 //---variable qui sélectionnent le formulaire
 
@@ -158,7 +152,7 @@ const validAddress = function (inputAddress) {
   //-----Création de l'expresion régulière pour la validation du nom
   let addressRegExp = new RegExp(
     // '^[1-10]{2-10}+[/s]{1}+[A-Za-z\é\è\ê\s]$', 'g'
-    '^[a-zA-Z0-9-\s]+$', 'g'
+    '^[a-zA-Z0-9\s]+$', 'g'
   );
 
   //Selection de la balise small pour alerter de la validité du champs
@@ -207,7 +201,6 @@ const validCity = function (inputCity) {
 };
 
 //-------------VALIDATION EMAIL------
-
 //Ecouter la modification de l'email 
 userForm.email.addEventListener('change', function () {
   validEmail(this)
@@ -235,53 +228,72 @@ const validEmail = function (inputEmail) {
   }
 }
 
-
 //----Envoi du formulaire au back-end 
 //----Variable qui sélectionne le boutton d'envoi du formulaire
 const userDataBtn = document.querySelector(".formBtn");
 console.log(userDataBtn); 
-const firstName = document.querySelector("#firstName").value; 
-console.log(firstName);
-const lastName = document.querySelector("#lastName").value; 
-console.log(lastName);
-const address = document.querySelector("#address").value; 
-console.log(address);
-const city = document.querySelector("#city").value; 
-console.log(city);
-const email = document.querySelector("#email").value; 
-console.log(email); 
 
-const contact = {
-  firstName: firstName,
-  lastName: lastName,
-  address: address,
-  city: city,
-  email: email
-};  
-
-const priceToPay = document.querySelector("#sumTotal").innerText; 
-console.log(priceToPay);  
-
-const productsChoiced = savedInLocalStorage;
-console.log(productsChoiced);
-
-let sendToBackend = { contact, productsChoiced,priceToPay};
-sendToBackendjs = JSON.stringify(sendToBackend); 
-console.log(sendToBackend); 
 
 
 userDataBtn.addEventListener("click", (event) => {
   event.preventDefault();
  
-  ("http://localhost:3000/api/cameras/order",{
-    
-  method: "POST",
-  body: sendToBackendjs,
-  headers: {
-    "Content-Type": "application/json", 
-  },
-})
+let inputFirstName = document.querySelector("#firstName");
+let inputLastName = document.querySelector("#lastName");
+let inputCity = document.querySelector("#city");
+let inputAddress = document.querySelector("#address");
+let inputEmail = document.querySelector("#email");
+
+const firstName = inputFirstName.value; 
+const lastName = inputLastName.value; 
+const address = inputAddress.value; 
+const city = inputCity.value; 
+const email = inputEmail.value; 
 
 
+// Création d'un array d'id produit pour le body de la requête POST
+const productsChoicedId = [];
+console.log(productsChoicedId);
+for (let j = 0; j < savedInLocalStorage.length; j++) {
+  let prodIds = savedInLocalStorage[j].id;
+  console.log(prodIds);
+  productsChoicedId.push(prodIds);
+  console.log(productsChoicedId);
+}
 
+const sendToBackend= {
+contact :{
+firstName: firstName,
+lastName: lastName,
+address: address,
+city: city,
+email: email
+}, 
+products: productsChoicedId,
+};
+console.log(sendToBackend);
+
+
+const options = {
+  
+method: "POST",
+body: JSON.stringify(sendToBackend),
+headers: {
+  "Content-Type": "application/json" 
+}, 
+};
+ 
+const postRequest = fetch("http://localhost:3000/api/cameras/order",options);
+console.log(postRequest); 
+   postRequest.then(async(response)=>{
+     try{
+console.log(response); 
+
+const contenu = await response.json(); 
+console.log(contenu);
+
+     }catch(e){
+       console.log(e);
+     }
+   })
 });
