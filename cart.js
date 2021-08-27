@@ -96,7 +96,7 @@ userForm.lastName.addEventListener('change', function () {
 const validLastName = function (inputLastName) {
   //-----Création de l'expresion régulière pour la validation du nom
   let lastNameRegExp = new RegExp(
-    '^[A-Z]{2,10}$', 'g'
+    '^[A-Za-z\é\è\ê\-]{2,10}$', 'g'
   );
 
   //Selection de la balise small pour alerter de la validité du champs
@@ -152,7 +152,7 @@ const validAddress = function (inputAddress) {
   //-----Création de l'expresion régulière pour la validation du nom
   let addressRegExp = new RegExp(
     // '^[1-10]{2-10}+[/s]{1}+[A-Za-z\é\è\ê\s]$', 'g'
-    '^[a-zA-Z0-9\s]+$', 'g'
+    '[a-zA-Z0-9\s\,\\-]*', 'g'
   );
 
   //Selection de la balise small pour alerter de la validité du champs
@@ -232,7 +232,6 @@ const validEmail = function (inputEmail) {
 //----Variable qui sélectionne le boutton d'envoi du formulaire
 const userDataBtn = document.querySelector(".formBtn");
 console.log(userDataBtn); 
-
 
 
 userDataBtn.addEventListener("click", (event) => {
