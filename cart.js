@@ -29,7 +29,7 @@ else {
       <td id="productQuantity">
       <span id="quantity">${savedInLocalStorage[b].quantity}</span>
       </td>
-        <td id="productPrice"><strong>${savedInLocalStorage[b].price},00€</strong></td>
+        <td id="productPrice"><strong>${savedInLocalStorage[b].price}€</strong></td>
         <td id="delete"><a class="btn-delete"><i class="fas fa-times-circle"></i></a></td>
         </tr>
         </tbody>
@@ -209,7 +209,7 @@ userForm.email.addEventListener('change', function () {
 const validEmail = function (inputEmail) {
   //-----Création de l'expresion régulière pour la validation de l'email
   let emailRegExp = new RegExp(
-    '^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g'
+    '^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g'
   );
 
   //Selection de la balise small pour alerter de la validité du champs
@@ -282,18 +282,24 @@ headers: {
   "Content-Type": "application/json" 
 }, 
 };
- 
+const orderPrice = document.querySelector("#sumTotal").innerText;
+console.log(orderPrice);
 const postRequest = fetch("http://localhost:3000/api/cameras/order",options);
-console.log(postRequest); 
    postRequest.then(async(response)=>{
      try{
 console.log(response); 
-
-const contenu = await response.json(); 
-console.log(contenu);
+const orderId = await response.json(); 
+console.log(orderId);
+localStorage.clear();
+localStorage.setItem("order_id",orderId.orderId);
+localStorage.setItem("order_price",orderPrice);
+window.location.href = "order.html";
 
      }catch(e){
        console.log(e);
      }
    })
 });
+
+
+

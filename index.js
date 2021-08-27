@@ -13,11 +13,11 @@ function fetchData() {
             const html = data.map(cameras => {
                 return `
           <div class="cameras">
-          <a href="products.html?+=${cameras._id}">
           <img src="${cameras.imageUrl}" alt="${cameras.name}"/>
-          <h3>${cameras.name}</h3>
-          <p><strong>${cameras.price / 100}€</strong></p>
-          </a>
+          <h3 class="camerasNames">${cameras.name}</h3>
+          <div class="namesBorders"></div>
+          <p><strong>Prix: ${cameras.price / 100}€</strong></p> 
+          <a class="btn btn-secondary product_link" href="products.html?+=${cameras._id}">voir le produit</a>
           </div>
           `;
             })
