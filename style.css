@@ -3,30 +3,30 @@ body{
 }
 
 /*Header*/
-header{ 
-    width: 100%; 
+header{
+    width: 100%;
     height: 7rem;
     background-color: rgb(241, 233, 241);
     padding-bottom:1.5rem;
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     position: relative;
-}  
+}
 
 header img{
-    width:200px;
+    width:10rem;
     height:70px;
-    margin-left: 2rem; 
-    position: absolute; 
+    margin-left: 2rem;
+    position: absolute;
     top: 15%;
     object-fit:contain;
 }
 
 .nav{
     display: flex;
-    align-items: baseline; 
+    align-items: baseline;
     padding: 2.3rem 25px;
-} 
+}
 
 
 
@@ -35,17 +35,17 @@ header img{
     font-weight:bold;
     text-decoration: none;
 }
-/*TITRES*/  
+/*TITRES*/
 .hero_banner img{
-    width: 100%; 
-    margin:0; 
+    width: 100%;
+    margin:0;
     height: 25rem;
     object-fit:cover;
 }
 
 .container{
     padding:2.5rem;
-}  
+}
 
 /*Accueil*/
 #indexTitle{
@@ -53,11 +53,22 @@ header img{
     margin-top: -1.5rem;
     font-weight: bolder;
     color:#b1a198;
-} 
+}
+
+.blocCameras{
+    width: 95%;
+    margin:auto;
+    background-color:  rgb(241, 233, 241);
+    padding: 3rem 1rem 1.5rem 1rem;
+    margin-top: 4rem;
+    border-radius: 10px;
+}
 
 #indexSubTitle{
     margin-bottom: -1.9rem;
     margin-left: 2.5rem;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 #allProducts{
@@ -67,9 +78,9 @@ header img{
 }
 
 .cameras{
-    width: 485px; 
-    height: 350px; 
-    border-radius: 8px; 
+    width: 400px;
+    height: 350px;
+    border-radius: 8px;
     background-color: white;
     box-shadow:5px 5px 9px rgb(37, 37, 36);
     margin:1.5rem 1.5rem;
@@ -77,29 +88,21 @@ header img{
 }
 
 .cameras img{
-     width: 100%; 
+     width: 100%;
      height: 80%;
      border-top-left-radius: 8px;
      border-top-right-radius: 8px;
-    object-fit: cover; 
+    object-fit: cover;
 }
 
 .cameras h3, p{
-    margin-left: 1rem; 
+    margin-left: 1rem;
     margin-top: 0.25rem;
 }
 
-.namesBorders{
-    width: 470px; 
-    border:solid 2px  #c7a6e7;
-    position: absolute; 
-    bottom: 8%;
-    left: 3%;
-}
-
 .product_link{
-    position: absolute; 
-    bottom: 4%; 
+    position: absolute;
+    bottom: 4%;
     right: 2%;
     background:linear-gradient(to right,#a9bf9b, #c7a6e7);
 }
@@ -107,60 +110,97 @@ header img{
 .productPageLink{
     position: absolute;
     right: 2%;
-    bottom: 2%; 
-    font-weight: bolder; 
+    bottom: 2%;
+    font-weight: bolder;
     color: black;
-} 
+}
 
-/*ProductPage*/ 
+/*ProductPage*/
 .card{
 width: 40rem;
 height: 35rem;
+margin:auto;
 }
 
 #productImg img{
-    width: 100%; 
+    width: 100%;
     height:250px;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     object-fit: cover;
-} 
+}
 
 #form-control, #form-quantity{
-    padding: 0.3rem; 
+    padding: 0.3rem;
     width: 100%;
+}
+
+.btn-decrease i, .btn-increase i{
+    margin-top: 1rem;
+}
+
+#addToCart{
+
+    color: white;
+    font-weight: bolder;
+}
+.popUpwindow{
+    z-index: 1;
+    width: 200px; 
+    height: 200px;
+ margin-top: -20rem;   
 } 
 
+.backIndex{
+    margin-bottom: 1rem;
+}
 
 /*Page panier*/
+.cartPageTitle{
+    margin-bottom: 5rem;
+}
+
+.yourCart{
+    margin-bottom: 2rem;
+}
+
+#productsSelected{
+   border: solid 0.5px gray;
+   background-color: rgb(255, 255, 255);
+   padding: 0.3rem;
+   border-radius: 10px;
+   margin-bottom: 3.5rem;
+
+}
+
 .table h3{
     font-size: 1.2em;
-} 
+}
 
 .table h4{
     font-size: 1.1em;
-} 
+}
 #columnsNames, #articleChoiced{
-    width: 70rem; 
+    width: 70rem;
     margin-top: auto;
 }
 
 .quantity{
     width: 3.7rem;
-} 
+}
 
  #productName,#productTitle{
-     width: 25%; 
+     width: 25%;
      margin-right: 2rem;
- }  
+ }
 
  #productLenses,#lensesTitle{
     width: 25%;
- }  
+ }
 
  #productPrice{
      width: 20%;
- }  
+ }
  #priceTitle{
      width:25%;
  }
@@ -169,26 +209,183 @@ height: 35rem;
  }
  .btn-delete{
      font-size: 1.5em;
-     margin-bottom: 1rem; 
+     margin-bottom: 1rem;
  }
 
  #totalTitle{
      font-size: 1.5em;
+
  }
- #sumTotal{
-    margin-left: 25rem ;
+
+ .formTitle{
+     margin-bottom: 2rem;
  }
+
+ #userDataForm{
+     margin: auto;
+     width: 65%;
+     border-radius: 8px;
+     border: solid 0.5px gray;
+     background-color: rgb(241, 233, 241);;
+     padding: 2rem 1.5rem 2rem 1.5rem;
+     position: relative;
+ }
+
+ .form-group{
+     width: 80%;
+     margin: auto;
+ }
+ #order_btn{
+     width: 250px;
+    margin-top: 4rem;
+ }
+
+/*PAGE CONFIRMATION*/
+#orderTitle{
+    margin-bottom: 5rem;
+}
+
+#order_recap{
+    margin-top: 2rem;
+    border: solid 0.5px gray;
+    background-color: rgb(241, 233, 241);
+    border-radius: 10px;
+    padding: 2rem;
+}
+
 /*FOOTER*/
 footer{
-    width: 100%; 
-    height: 10rem;
-    margin-top:auto;
-    background-color: rgb(241, 233, 241); 
+    width: 100%;
+    height: 8rem;
+    margin-top:4rem;
+    background-color: rgb(241, 233, 241);
     font-weight: bold;
-    font-size: 1.1em;
-} 
+    text-decoration: none;
+}
+
+.footer_titles{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 8rem;
+    padding-right: 8rem;
+    font-size: 1.1rem;
+}
 
 .footer_titles li{
-    text-decoration: none; 
-    display: flex;
+    padding-top: 3.2rem;
+    padding-bottom: 3.2rem;
+    list-style-type: none;
+}
+
+.socials i{
+    margin-left:0.5rem;
+    margin-right: 0.5rem;
+    font-size: 2rem;
+}
+
+@media all and (min-width: 768px) and (max-width:1023px){
+
+
+
+
+}
+@media all and (max-width: 767px){
+ 
+   header{
+       margin-bottom: 2rem;
+   }
+    
+   header img{
+       margin-left:1rem;
+       width: 45%;
+   }
+   .nav_elements{
+       flex-direction: column;
+       margin-left: -3rem; 
+   }
+   .hero_banner img{
+    display: none;
+   }
+
+ .blocCameras{
+     width: 100%;
+     margin:0;
+        padding: 3rem 0rem 1.5rem 0rem;
+ }
+
+ .cameras{
+     width: 95%;
+     margin: 1rem;
+ }
+ .camerasNames{
+     font-size: 1.3em;
+ }
+.product_link{
+    bottom: 1%;
+}
+ .indexPrices{
+     font-size:0.95em;
+ } 
+
+ .card{
+    width: 90%;
+    height: 35rem;
+    margin:0;
+    }
+    .popUpwindow{
+        z-index: 1;
+        width: 200px; 
+        height: 200px;
+     margin: -10rem 2rem 0rem 2rem;   
+    } 
+    
+    .table h3{
+        font-size: 1em;
+    }
+    #productPrice{
+        width: 25%;
+    }
+    #priceTitle{
+        width:25%;
+    } 
+    #qtyTitle{
+        width:25%;
+    }
+    #userDataForm{
+        margin: auto;
+        width: 90%;
+        padding: 2rem 0.5rem 2rem 0.5rem;
+        position: relative;
+    }
+    #order_btn{
+        width: 100%;
+    }
+   footer{
+       height:15rem;
+   }
+    .footer_titles{
+    padding-left: 3rem;
+    padding-right: 3rem;
+    flex-wrap: wrap;
+    }
+
+    .footer_titles li{
+    padding-top: 0.7rem;
+    padding-bottom: 0.5rem;
+    }
+
+    .contact:nth-child(1){
+        order:1;
+    }
+
+    .socials:nth-child(2){
+        order:3;
+        margin-left: 2.2rem;
+        margin-right: 2.2rem;
+        flex-direction: column;
+    }
+
+    .legacies:nth-child(3){
+        order:2;
+    }
 }

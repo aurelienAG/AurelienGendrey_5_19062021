@@ -111,21 +111,25 @@ console.log(convertedPrice);
   //JSON.parse pour convertir les données JSON du local storage en objet javascript
   console.log(savedInLocalStorage);
 
-  //Fonction fenêtre pop-up 
-  const popUpAdded = () => {
-    if (window.confirm(`Votre produit a bien été ajouté au panier!
-Cliquez sur OK pour voir votre panier`)) {
-      window.location.href = "cart.html";
-    } else {
-      window.location.href = window.location;
-    }
-  }
+  //Variable fenêtre pop-up 
+  const popUpAdded = document.querySelector("#popUp"); 
+  console.log(popUpAdded); 
+  popUpAdded.innerHTML= `<div class="card popUpwindow">
+  <div class="card-header">
+   <strong> Votre produit a été ajouté au panier !</strong>
+  </div>
+  <div class="card-body">
+  <a href="index.html" class="btn btn-secondary backIndex">Retour à l'accueil</a>
+    <a href="cart.html" class="btn btn-secondary">Voir mon panier</a>
+  </div>
+</div>`;
+
+
   //si il y a déjà des produits dans le local storage 
   if (savedInLocalStorage) {
     savedInLocalStorage.push(productSelected);
     localStorage.setItem("productAdded", JSON.stringify(savedInLocalStorage));
     console.log(savedInLocalStorage);
-    popUpAdded();
   }
 
   //si il n'y a pas de produits dans le local storage

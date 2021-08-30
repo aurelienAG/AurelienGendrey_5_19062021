@@ -15,8 +15,7 @@ function fetchData() {
           <div class="cameras">
           <img src="${cameras.imageUrl}" alt="${cameras.name}"/>
           <h3 class="camerasNames">${cameras.name}</h3>
-          <div class="namesBorders"></div>
-          <p><strong>Prix: ${cameras.price / 100}€</strong></p> 
+          <p class="indexPrices"><strong>${cameras.price / 100}€</strong></p> 
           <a class="btn btn-secondary product_link" href="products.html?+=${cameras._id}">voir le produit</a>
           </div>
           `;

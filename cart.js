@@ -96,7 +96,7 @@ userForm.lastName.addEventListener('change', function () {
 const validLastName = function (inputLastName) {
   //-----Création de l'expresion régulière pour la validation du nom
   let lastNameRegExp = new RegExp(
-    '^[A-Za-z\é\è\ê\-]{2,10}$', 'g'
+    '^[a-zA-Z\é\è\ê\-]{2,30}', 'g'
   );
 
   //Selection de la balise small pour alerter de la validité du champs
@@ -104,6 +104,7 @@ const validLastName = function (inputLastName) {
 
   //----Test de la reg exp
   if (lastNameRegExp.test(inputLastName.value)) {
+    inputLastName === true;
     small.innerHTML = 'Nom valide';
     small.classList.remove('text-danger')
     small.classList.add('text-success');
@@ -123,7 +124,7 @@ userForm.firstName.addEventListener('change', function () {
 const validFirstName = function (inputFirstName) {
   //-----Création de l'expresion régulière pour la validation du nom
   let firstNameRegExp = new RegExp(
-    '^[a-zA-Z\é\è\ê\-]{2,10}$', 'g'
+    '^[a-zA-Z\é\è\ê\-]{2,30}', 'g'
   );
 
   //Selection de la balise small pour alerter de la validité du champs
@@ -131,6 +132,7 @@ const validFirstName = function (inputFirstName) {
 
   //----Test de la reg exp
   if (firstNameRegExp.test(inputFirstName.value)) {
+    inputFirstName === true;
     small.innerHTML = 'Prénom valide';
     small.classList.remove('text-danger')
     small.classList.add('text-success');
@@ -160,6 +162,7 @@ const validAddress = function (inputAddress) {
 
   //----Test de la reg exp
   if (addressRegExp.test(inputAddress.value)) {
+    inputAddress === true;
     small.innerHTML = 'Adresse valide';
     small.classList.remove('text-danger')
     small.classList.add('text-success');
@@ -181,7 +184,7 @@ const validCity = function (inputCity) {
   //-----Création de l'expresion régulière pour la validation de la ville
   let cityRegExp = new RegExp(
     // '^[1-10]{2-10}+[/s]{1}+[A-Za-z\é\è\ê\s]$', 'g'
-    '^[a-zA-Z\é\è\ê\-]{2,10}$', 'g'
+    '^[a-zA-Z\é\è\ê\-]{2,30}', 'g'
   );
 
   //Selection de la balise small pour alerter de la validité du champs
@@ -189,6 +192,7 @@ const validCity = function (inputCity) {
 
   //----Test de la reg exp
   if (cityRegExp.test(inputCity.value)) {
+    inputCity === true;
     small.innerHTML = 'Ville valide';
     small.classList.remove('text-danger')
     small.classList.add('text-success');
@@ -217,6 +221,7 @@ const validEmail = function (inputEmail) {
 
   //----Test de la reg exp
   if (emailRegExp.test(inputEmail.value)) {
+    inputEmail === true;
     small.innerHTML = 'Adresse valide';
     small.classList.remove('text-danger')
     small.classList.add('text-success');
@@ -232,7 +237,6 @@ const validEmail = function (inputEmail) {
 //----Variable qui sélectionne le boutton d'envoi du formulaire
 const userDataBtn = document.querySelector(".formBtn");
 console.log(userDataBtn); 
-
 
 userDataBtn.addEventListener("click", (event) => {
   event.preventDefault();
